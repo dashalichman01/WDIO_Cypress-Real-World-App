@@ -17,7 +17,7 @@ jobs:
       #     repository: cypress-realworld-app
       #     path: cypress-realworld-app
       - name: Install Server
-        run: cd cypress-realworld-app && yarn install
+        run: cd ./cypress-realworld-app && yarn install
       # - name: Checkout test
       #   uses: actions/checkout@v4
       #   with:
@@ -28,12 +28,12 @@ jobs:
 
       - name: Run Tests
         run: |
-          cd cypress-realworld-app && yarn dev &
+          cd ./cypress-realworld-app && yarn dev &
           cd .. &&  npm run wdio
           
       - name: Generate Allure report
         if: always() 
-        run: cd tests && npm run allure:report
+        run: cd .. && npm run allure:report
 
       - name: Deploy Report to GitHub Pages
         if: always() 
