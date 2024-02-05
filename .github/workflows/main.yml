@@ -10,12 +10,11 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 'latest'
+          node-version: '16'
       - name: Install dependencies
         run: npm ci
       - name: Install Server
         run: |
-         npm install
          git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
          sleep 10
          npm run wdio
