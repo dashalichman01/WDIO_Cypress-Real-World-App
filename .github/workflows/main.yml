@@ -11,17 +11,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
-      # - name: Checkout server
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: cypress-realworld-app
-      #     path: cypress-realworld-app
+       - name: Checkout server
+         uses: actions/checkout@v4
+         with:
+           repository: cypress-realworld-app
+           path: cypress-realworld-app
       - name: Install Server
         run: cd cypress-realworld-app && yarn install
-      # - name: Checkout test
-      #   uses: actions/checkout@v4
-      #   with:
-      #     path: tests
+       - name: Checkout test
+         uses: actions/checkout@v4
+         with:
+           path: tests
 
       - name: Install Test
         run: cd .. && npm install
