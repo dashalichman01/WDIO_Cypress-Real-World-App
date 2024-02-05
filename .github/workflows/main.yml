@@ -12,13 +12,10 @@ jobs:
         with:
           node-version: 'latest'
       - name: Install Server
-        run: git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
-
-      - name: Install Test
-        run: npm install
-
-      - name: Run Tests
         run: |
+          npm install
+          git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
+          sleep 10
           npm run wdio
           
       - name: Generate Allure report
