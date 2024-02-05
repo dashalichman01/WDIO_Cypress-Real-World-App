@@ -27,7 +27,7 @@ Make sure you have the following installed on your machine:
 
 To run Cypress tests, use the following command:
 
-   `npm run wdio`
+   ```npm run wdio
 
 ### Configuration
 
