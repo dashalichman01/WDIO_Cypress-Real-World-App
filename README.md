@@ -16,18 +16,19 @@ Make sure you have the following installed on your machine:
 1. Clone this repository:
 
    ```bash
-   `git clone https://github.com/dashalichman01/WDIO_Cypress-Real-World-App.git`
+   git clone https://github.com/dashalichman01/WDIO_Cypress-Real-World-App.git
 
 2. Install dependencies:
 
     ```bash
-   `npm install`
+   npm install
 
 ### Running Tests
 
 To run Cypress tests, use the following command:
 
-   ```npm run wdio
+   ```bash
+   npm run wdio
 
 ### Configuration
 
