@@ -11,29 +11,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
-      # - name: Checkout server
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: cypress-realworld-app
-      #     path: cypress-realworld-app
       - name: Install Server
-        run: cd ./cypress-realworld-app && yarn install
-      # - name: Checkout test
-      #   uses: actions/checkout@v4
-      #   with:
-      #      path: tests
+        run: git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev
 
       - name: Install Test
-        run: cd .. && npm install
+        run: npm install
 
       - name: Run Tests
         run: |
-          cd ./cypress-realworld-app && yarn dev &
-          cd .. &&  npm run wdio
+          npm run wdio
           
       - name: Generate Allure report
         if: always() 
-        run: cd .. && npm run allure:report
+        run: npm run allure:report
 
       - name: Deploy Report to GitHub Pages
         if: always() 
@@ -41,4 +31,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./allure-report
+          publish_dir: ./tests/reports/allure-reports
