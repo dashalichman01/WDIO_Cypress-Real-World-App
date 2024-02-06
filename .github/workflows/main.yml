@@ -48,12 +48,12 @@ jobs:
       - name: Generate Allure report
         if: always() 
         run: cd tests && npm run allure:report
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: allure-report
-          path: allure-report/
-          retention-days: 30
+      # - uses: actions/upload-artifact@v2
+      #   if: always()
+      #   with:
+      #     name: allure-report
+      #     path: allure-report/
+      #     retention-days: 30
 
       - name: Push to repository
         uses: cpina/github-action-push-to-another-repository@main
@@ -66,6 +66,5 @@ jobs:
           destination-github-username: 'dashalichman01'
           destination-repository-name: 'WDIO_Cypress-Real-World-App'
           user-email: lichmandasha2001@gmail.com
-          target-directory: tests
           target-branch: gh-pages
 
