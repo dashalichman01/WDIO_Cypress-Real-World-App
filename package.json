@@ -6,7 +6,7 @@
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
     "allure:report": "npx allure generate allure-results --clean",
-    "allure:open": "allure open allure-report"
+    "allure:open": "npx allure open allure-report"
   },
   "author": "",
   "license": "ISC",
