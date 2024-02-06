@@ -39,8 +39,8 @@ jobs:
           cd cypress-realworld-app && yarn dev &
           cd tests && sleep 60 && npm run wdio
 
-      - name: Create Allure Report Directory
-        run: cd tests && mkdir -p ./tests/reports/allure-reports
+      # - name: Create Allure Report Directory
+      #   run: cd tests && mkdir -p ./tests/reports/allure-reports
 
       - name: Generate Allure report
         if: always() 
