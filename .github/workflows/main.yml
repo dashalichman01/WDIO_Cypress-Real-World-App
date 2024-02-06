@@ -37,13 +37,7 @@ jobs:
       - name: Run Tests
         run: |
           cd cypress-realworld-app && yarn dev &
-          cd tests && sleep 120 && npm run wdio
-
-      - name: Run Tests
-        run: |
-          yarn dev &
-          sleep 10
-          npm run wdio
+          cd tests && sleep 60 && npm run wdio
 
       - name: Generate Allure report
         if: always() 
