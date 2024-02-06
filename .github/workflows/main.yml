@@ -45,15 +45,20 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: allure-chrome-report
+          name: allure-report
           path: allure-report/
           retention-days: 30
 
-      - name: Deploy Report to GitHub Pages
-        if: always() 
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./tests/allure-report
+      - name: Push to repository
+      uses: cpina/github-action-push-to-another-repository@main
+      if: always()
+      env:
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: 'allure-report'
+        destination-github-username: 'dashalichman01'
+        destination-repository-name: 'WDIO_Cypress-Real-World-App'
+        user-email: lichmandasha2001@gmail.com
+        target-branch: gh-pages
 
