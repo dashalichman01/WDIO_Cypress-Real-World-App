@@ -50,15 +50,14 @@ jobs:
           retention-days: 30
 
       - name: Push to repository
-      uses: cpina/github-action-push-to-another-repository@main
-      if: always()
-      env:
+        uses: cpina/github-action-push-to-another-repository@main
+        if: always()
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      with:
-        source-directory: 'allure-report'
-        destination-github-username: 'dashalichman01'
-        destination-repository-name: 'WDIO_Cypress-Real-World-App'
-        user-email: lichmandasha2001@gmail.com
-        target-branch: gh-pages
+        with:
+          source-directory: 'allure-report'
+          destination-github-username: 'dashalichman01'
+          destination-repository-name: 'WDIO_Cypress-Real-World-App'
+          user-email: lichmandasha2001@gmail.com
+          target-branch: gh-pages
 
