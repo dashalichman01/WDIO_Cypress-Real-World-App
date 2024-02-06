@@ -1,25 +1,38 @@
 name: CypressRealWorldAppTests
-on: [push, pull_request]
+
+on:
+  push:
+  pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
       USER: ${{ secrets.USER }}
       PASSWORD: ${{ secrets.PASSWORD }}
+
     steps:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
+
       - name: Install dependencies
         run: npm install
+
       - name: Install Server
         run: |
-         npm install
-         git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
-         sleep 10
+          npm install
+          git clone https://github.com/cypress-io/cypress-realworld-app.git .
+          yarn install
+          
+
       - name: Run Tests
-        run: npm run wdio
+        run: |
+          yarn dev &
+          sleep 10
+          npm run wdio
+
       - name: Generate Allure report
         if: always() 
         run: npm run allure:report
