@@ -32,16 +32,16 @@ jobs:
           path: tests
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-       - name: Install Test
+      - name: Install Test
         run: cd tests && npm install
 
       - name: Run Tests
         run: |
           cd cypress-realworld-app && yarn dev &
           cd tests && sleep 120 && npm run wdio
-          
+
       # - name: Install Server
       #   run: |
       #     npm install
