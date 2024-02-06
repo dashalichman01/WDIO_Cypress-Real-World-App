@@ -15,26 +15,26 @@ describe('Bank accounts tests', ()=>{
 
     it('should create bank account with wrong routing number', async()=>{
         await bankAccountsPage.clickCreateBtn();
-        await bankAccountsPage.setBankName(generator.randomBankName);
-        await bankAccountsPage.setRoutingNumber(generator.wrongRoutingNumber);
+        await bankAccountsPage.setBankName(await generator.randomBankName());
+        await bankAccountsPage.setRoutingNumber(await generator.wrongRoutingNumber());
         await expect(bankAccountsPage.isRoutingNumberErrorMsgDisplayed()).toBeTruthy();
         await expect(await bankAccountsPage.getRoutingNumberErrorMsg()).toHaveText('Must contain a valid routing number');
     })
 
     it('should create bank account with wrong account number', async()=>{
         await bankAccountsPage.clickCreateBtn();
-        await bankAccountsPage.setBankName(generator.randomBankName);
-        await bankAccountsPage.setRoutingNumber(generator.randomRoutingNumber);
-        await bankAccountsPage.setAccountNumber(generator.wrongRoutingNumber);
+        await bankAccountsPage.setBankName(await generator.randomBankName());
+        await bankAccountsPage.setRoutingNumber(await generator.randomRoutingNumber());
+        await bankAccountsPage.setAccountNumber(await generator.wrongRoutingNumber());
         await expect(bankAccountsPage.isBankAccountNumberErrorMsgDisplayed()).toBeTruthy();
         await expect(await bankAccountsPage.getBankAccountNumberErrorMsg()).toHaveText('Must contain at least 9 digits');
     })
 
     it('should create new bank account', async()=>{
         await bankAccountsPage.clickCreateBtn();
-        await bankAccountsPage.setBankName(generator.randomBankName);
-        await bankAccountsPage.setRoutingNumber(generator.randomRoutingNumber);
-        await bankAccountsPage.setAccountNumber(generator.randomAccountNumber);
+        await bankAccountsPage.setBankName(await generator.randomBankName());
+        await bankAccountsPage.setRoutingNumber(await generator.randomRoutingNumber());
+        await bankAccountsPage.setAccountNumber(await generator.randomAccountNumber());
         await bankAccountsPage.clickSaveBtn();
         await expect(await browser.getUrl()).toContain('bankaccounts');
     })

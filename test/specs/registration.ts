@@ -7,19 +7,19 @@ describe('Registration tests', () => {
     })
 
     it('try to sign up without username', async()=>{
-        const password = generator.randomPassword;
-        await registrationPage.setFirstName(generator.randomFirstName);
-        await registrationPage.setLastName(generator.randomLastName);
+        const password = await  generator.randomPassword();
+        await registrationPage.setFirstName(await generator.randomFirstName());
+        await registrationPage.setLastName(await generator.randomLastName());
         await registrationPage.setPassword(password);
         await registrationPage.setConfirmedPassword(password);
         await expect (await registrationPage.isSignUpClickable()).toBeFalsy();
     })
 
     it('should sign up with valid credentials', async()=>{
-        const password = generator.randomPassword;
-        await registrationPage.setFirstName(generator.randomFirstName);
-        await registrationPage.setLastName(generator.randomLastName);
-        await registrationPage.setUsername(generator.randomUsername);
+        const password = await generator.randomPassword();
+        await registrationPage.setFirstName(await generator.randomFirstName());
+        await registrationPage.setLastName(await generator.randomLastName());
+        await registrationPage.setUsername(await generator.randomUsername());
         await registrationPage.setPassword(password);
         await registrationPage.setConfirmedPassword(password);
         await registrationPage.clickSignUpBtn();
@@ -28,11 +28,11 @@ describe('Registration tests', () => {
     })
 
     it('should sign up with wrong confirmed password', async()=>{
-        await registrationPage.setFirstName(generator.randomFirstName);
-        await registrationPage.setLastName(generator.randomLastName);
-        await registrationPage.setUsername(generator.randomUsername);
-        await registrationPage.setPassword(generator.randomPassword);
-        await registrationPage.setConfirmedPassword(generator.randomPassword);
+        await registrationPage.setFirstName(await generator.randomFirstName());
+        await registrationPage.setLastName(await generator.randomLastName());
+        await registrationPage.setUsername(await generator.randomUsername());
+        await registrationPage.setPassword(await generator.randomPassword());
+        await registrationPage.setConfirmedPassword(await generator.randomPassword());
         await expect (await registrationPage.isConfirmPasswordErrorTextDisplayed()).toBeTruthy();
     })
 })

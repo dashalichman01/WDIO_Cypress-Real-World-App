@@ -13,13 +13,13 @@ describe('Login tests', () => {
     }),
 
     it('should login with invalid username', async()=>{
-        await loginPage.login(generator.randomUsername, ''+process.env.PASSWORD);
+        await loginPage.login(await generator.randomUsername(), ''+process.env.PASSWORD);
         await expect(loginPage.isErrorMsgDisplayed).toBeTruthy();
         await expect(await loginPage.getErrorMsg()).toEqual('Username or password is invalid');
     }),
 
     it('should login with invalid password', async()=>{
-        await loginPage.login(''+process.env.USER, generator.randomPassword);
+        await loginPage.login(''+process.env.USER, await generator.randomPassword());
         await expect(loginPage.isErrorMsgDisplayed).toBeTruthy();
         await expect(await loginPage.getErrorMsg()).toEqual('Username or password is invalid');
     })

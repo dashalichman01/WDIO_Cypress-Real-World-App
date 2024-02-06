@@ -36,7 +36,7 @@ class Page {
     }
 
     async getAmount(element: string){
-        return await $$(element).length;
+        return (await $$(element)).length;
     }
 
     async isElementClickableByIndex(element: string, index: number) {

@@ -13,8 +13,8 @@ describe('Transactions tests', ()=>{
     })
 
     it('should create new pay transaction', async()=>{
-        const amountOfTransaction = generator.randomAmount.toString();
-        const note = generator.randomNote;
+        const amountOfTransaction = (await generator.randomAmount()).toString();
+        const note = await generator.randomNote();
         await transactionsPage.clickNewBtn();
         await transactionsPage.clickOnUser();
         await transactionsPage.setAmount(amountOfTransaction);
@@ -25,8 +25,8 @@ describe('Transactions tests', ()=>{
     })
 
     it('should create new request transaction', async()=>{
-        const amountOfTransaction = generator.randomAmount.toString();
-        const note = generator.randomNote;
+        const amountOfTransaction = (await generator.randomAmount()).toString();
+        const note = await generator.randomNote();
         await transactionsPage.clickNewBtn();
         await transactionsPage.clickOnUser();
         await transactionsPage.setAmount(amountOfTransaction);
@@ -37,14 +37,14 @@ describe('Transactions tests', ()=>{
     })
 
     it('should add comment to transaction', async()=>{
-        const comment = generator.randomNote;
+        const comment = await generator.randomNote();
         await transactionsPage.clickOnTransaction();
         await transactionsPage.writeComment(comment);
         await expect(await transactionsPage.getCommentItem()).toEqual(comment);
     })
 
     it('should add another comment to transaction', async()=>{
-        const comment = generator.randomNote;
+        const comment = await generator.randomNote();
         await transactionsPage.clickOnTransaction();
         await transactionsPage.writeComment(comment);
         await browser.refresh()

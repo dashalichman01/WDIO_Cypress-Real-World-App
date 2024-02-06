@@ -9,8 +9,8 @@ describe('User settings tests', ()=>{
     })
 
     it('should change user firstname and lastname', async()=>{
-        const firstname = generator.randomFirstName;
-        const lastname = generator.randomLastName;
+        const firstname = await generator.randomFirstName();
+        const lastname = await generator.randomLastName();
         await userPage.clickMyAccountBtn();
         await userPage.setFirstname(firstname);
         await userPage.setLastname(lastname);
@@ -19,7 +19,7 @@ describe('User settings tests', ()=>{
     })
 
     it('should change user firstname', async()=>{
-        const firstname = generator.randomFirstName;
+        const firstname = await generator.randomFirstName();
         await userPage.clickMyAccountBtn();
         await userPage.setFirstname(firstname);
         await userPage.clickSaveBtn();
@@ -27,7 +27,7 @@ describe('User settings tests', ()=>{
     })
 
     it('should change user lastname', async()=>{
-        const lastname = generator.randomLastName;
+        const lastname = await generator.randomLastName();
         await userPage.clickMyAccountBtn();
         await userPage.setLastname(lastname);
         await userPage.clickSaveBtn();
