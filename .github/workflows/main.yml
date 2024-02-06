@@ -38,9 +38,16 @@ jobs:
         run: |
           cd cypress-realworld-app && yarn dev &
           cd tests && sleep 60 && npm run wdio
-
-      # - name: Create Allure Report Directory
-      #   run: cd tests && mkdir -p ./tests/reports/allure-reports
+      - uses: actions/checkout@v2
+        if: always()
+        with:
+          repository: Honest-Foxy/WDIO-telnyx
+          ref: allure-chrome-report
+          path: ./docs
+          
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
 
       - name: Generate Allure report
         if: always() 
