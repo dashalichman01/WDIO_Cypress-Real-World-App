@@ -38,6 +38,30 @@ jobs:
         run: |
           cd cypress-realworld-app && yarn dev &
           cd tests && sleep 60 && npm run wdio
+
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
       # - uses: actions/checkout@v2
       #   if: always()
       #   with:
@@ -45,26 +69,26 @@ jobs:
       #     ref: allure-report
       #     path: ./docs
 
-      - name: Generate Allure report
-        if: always() 
-        run: cd tests && npm run allure:report
-      # - uses: actions/upload-artifact@v2
+      # - name: Generate Allure report
+      #   if: always() 
+      #   run: cd tests && npm run allure:report
+      # # - uses: actions/upload-artifact@v2
       #   if: always()
       #   with:
       #     name: allure-report
       #     path: allure-report/
       #     retention-days: 30
 
-      - name: Push to repository
-        uses: cpina/github-action-push-to-another-repository@main
-        if: always()
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'allure-report'
-          destination-github-username: 'dashalichman01'
-          destination-repository-name: 'WDIO_Cypress-Real-World-App'
-          user-email: lichmandasha2001@gmail.com
-          target-branch: gh-pages
+      # - name: Push to repository
+      #   uses: cpina/github-action-push-to-another-repository@main
+      #   if: always()
+      #   env:
+      #     SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source-directory: 'allure-report'
+      #     destination-github-username: 'dashalichman01'
+      #     destination-repository-name: 'WDIO_Cypress-Real-World-App'
+      #     user-email: lichmandasha2001@gmail.com
+      #     target-branch: gh-pages
 
