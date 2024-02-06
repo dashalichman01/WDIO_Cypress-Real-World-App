@@ -17,14 +17,36 @@ jobs:
         with:
           node-version: 'latest'
 
+      - name: Checkout server
+        uses: actions/checkout@v4
+        with:
+          repository: cypress-io/cypress-realworld-app
+          path: cypress-realworld-app
+
+      - name: Install Server
+        run: cd cypress-realworld-app && yarn install
+
+      - name: Checkout test
+        uses: actions/checkout@v4
+        with:
+          path: tests
+
       - name: Install dependencies
         run: npm install
 
-      - name: Install Server
+       - name: Install Test
+        run: cd tests && npm install
+
+      - name: Run Tests
         run: |
-          npm install
-          git clone https://github.com/cypress-io/cypress-realworld-app.git .
-          yarn install
+          cd cypress-realworld-app && yarn dev &
+          cd tests && sleep 120 && npm run wdio
+          
+      # - name: Install Server
+      #   run: |
+      #     npm install
+      #     git clone https://github.com/cypress-io/cypress-realworld-app.git .
+      #     yarn install
           
 
       - name: Run Tests
