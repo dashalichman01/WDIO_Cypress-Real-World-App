@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: 'latest'
 
+      - name: Install dependencies
+        run: npm install
+        
       - name: Checkout server
         uses: actions/checkout@v4
         with:
@@ -31,8 +34,7 @@ jobs:
         with:
           path: tests
 
-      - name: Install dependencies
-        run: npm install
+      
 
       - name: Install Test
         run: cd tests && npm install
