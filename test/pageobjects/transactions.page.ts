@@ -69,7 +69,7 @@ class TransactionsPage{
     }
 
     async clickOnTransaction(){
-        await page.clickElement(transactions);
+        await page.clickElement(transactions, false);
     }
 
     async clickLikeBtn(){
