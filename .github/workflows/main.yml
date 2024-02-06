@@ -42,7 +42,7 @@ jobs:
       - name: Generate Allure report
         if: always() 
         run: cd tests && npm run allure:report
-        uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: allure-chrome-report
