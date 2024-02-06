@@ -9,6 +9,7 @@ describe('Notifications test', ()=>{
         const notificationsBeforeDismissing = await notificationsPage.getAmountOfNotifications();
         await notificationsPage.clickDismissBtn();
         await browser.refresh();
+        await browser.pause(3000);
         const notificationsAfterDismissing = await notificationsPage.getAmountOfNotifications();
         await expect(notificationsAfterDismissing).toEqual(notificationsBeforeDismissing - 1);
         await expect(await (await notificationsPage.getNotificationsCount()).getText()).toEqual(notificationsAfterDismissing.toString());
