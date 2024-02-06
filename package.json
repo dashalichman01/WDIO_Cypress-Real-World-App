@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
-    "allure:report": "npx allure generate ./allure-results --clean -o ./allure-report"
+    "allure:report": "npx allure generate allure-results --clean",
+    "allure:open": "allure open allure-report"
   },
   "author": "",
   "license": "ISC",
