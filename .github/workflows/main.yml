@@ -1,33 +1,33 @@
-# name: CypressRealWorldAppTests
-# on: [push, pull_request]
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-#     env:
-#       USER: ${{ secrets.USER }}
-#       PASSWORD: ${{ secrets.PASSWORD }}
-#     steps:
-#       - name: Setup node
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: 'latest'
-#        - name: Install dependencies
-#          run: npm install
-#       - name: Install Server
-#         run: |
-#          npm install
-#          git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
-#          sleep 10
-#       - name: Run Tests
-#         run: npm run wdio
-#       - name: Generate Allure report
-#         if: always() 
-#         run: npm run allure:report
+name: CypressRealWorldAppTests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      USER: ${{ secrets.USER }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+      - name: Install dependencies
+        run: npm install
+      - name: Install Server
+        run: |
+         npm install
+         git clone https://github.com/cypress-io/cypress-realworld-app.git . && yarn install && yarn dev &
+         sleep 10
+      - name: Run Tests
+        run: npm run wdio
+      - name: Generate Allure report
+        if: always() 
+        run: npm run allure:report
 
-#       - name: Deploy Report to GitHub Pages
-#         if: always() 
-#         uses: peaceiris/actions-gh-pages@v3
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_branch: gh-pages
-#           publish_dir: ./tests/reports/allure-reports
+      - name: Deploy Report to GitHub Pages
+        if: always() 
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./tests/reports/allure-reports
