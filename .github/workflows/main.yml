@@ -49,5 +49,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./tests/reports/allure-reports
-          
+          publish_dir: ./tests/allure-report
+
