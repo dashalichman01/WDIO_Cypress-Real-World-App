@@ -41,7 +41,13 @@ jobs:
 
       - name: Generate Allure report
         if: always() 
-        run: cd tests && npm run allure:report && npm run allure:open
+        run: cd tests && npm run allure:report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: allure-chrome-report
+          path: allure-report/
+          retention-days: 30
 
       - name: Deploy Report to GitHub Pages
         if: always() 
