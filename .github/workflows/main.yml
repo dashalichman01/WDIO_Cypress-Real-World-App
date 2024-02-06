@@ -41,10 +41,10 @@ jobs:
       - uses: actions/checkout@v2
         if: always()
         with:
-          repository: Honest-Foxy/WDIO-telnyx
-          ref: allure-chrome-report
+          repository: dashalichman01/WDIO_Cypress-Real-World-App
+          ref: allure-report
           path: ./docs
-          
+
       - name: Copy History
         if: always()
         run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
