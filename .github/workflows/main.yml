@@ -39,10 +39,6 @@ jobs:
           cd cypress-realworld-app && yarn dev &
           cd tests && sleep 60 && npm run wdio
 
-      # - name: Generate Allure report
-      #   if: always() 
-      #   run: cd tests && npm run allure:report
-
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
@@ -50,6 +46,10 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
+      
+      - name: Generate Allure Report
+        if: always()
+        run: npm run allure:report
 
       - name: Build test report
         uses: simple-elf/allure-report-action@master
