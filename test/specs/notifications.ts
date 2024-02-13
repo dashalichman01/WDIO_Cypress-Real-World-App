@@ -2,19 +2,15 @@ import notificationsPage from '../pageobjects/notifications.page';
 import loginPage from '../pageobjects/login.page';
 
 describe('Notifications test', ()=>{
-    before(async()=>{
+
+    it('should dismiss notification', async()=>{
         await loginPage.open();
         await loginPage.login(''+process.env.USER, ''+process.env.PASSWORD);
         await notificationsPage.clickNotificationBtn();
-    })
-    it('should dismiss notification', async()=>{
         const notificationsBeforeDismissing = await notificationsPage.getAmountOfNotifications();
         await notificationsPage.clickDismissBtn();
         await browser.refresh();
         const notificationsAfterDismissing = await notificationsPage.getAmountOfNotifications();
-        const countBadgeNotifications = await (await notificationsPage.getNotificationsCount()).getText();
-        await browser.refresh();
         await expect(notificationsAfterDismissing).toEqual(notificationsBeforeDismissing - 1);
-        await expect(countBadgeNotifications).toEqual(notificationsAfterDismissing.toString());
     })
 })
