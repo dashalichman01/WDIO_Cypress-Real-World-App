@@ -11,7 +11,7 @@ describe('Notifications test', ()=>{
         await browser.refresh();
         const notificationsAfterDismissing = await notificationsPage.getAmountOfNotifications();
         const countBadgeNotifications = await (await notificationsPage.getNotificationsCount()).getText();
-        await browser.pause(3000);
+        await browser.refresh();
         await expect(notificationsAfterDismissing).toEqual(notificationsBeforeDismissing - 1);
         await expect(countBadgeNotifications).toEqual(notificationsAfterDismissing.toString());
     })

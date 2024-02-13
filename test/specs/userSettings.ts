@@ -8,10 +8,13 @@ describe('User settings tests', ()=>{
         await loginPage.login(''+process.env.USER, ''+process.env.PASSWORD);
     })
 
+    beforeEach(async()=>{
+        await userPage.clickMyAccountBtn();
+    })
+
     it('should change user firstname and lastname', async()=>{
         const firstname = await generator.randomFirstName();
         const lastname = await generator.randomLastName();
-        await userPage.clickMyAccountBtn();
         await userPage.setFirstname(firstname);
         await userPage.setLastname(lastname);
         await userPage.clickSaveBtn();
@@ -21,7 +24,6 @@ describe('User settings tests', ()=>{
 
     it('should change user firstname', async()=>{
         const firstname = await generator.randomFirstName();
-        await userPage.clickMyAccountBtn();
         await userPage.setFirstname(firstname);
         await userPage.clickSaveBtn();
         await browser.refresh();
@@ -30,7 +32,6 @@ describe('User settings tests', ()=>{
 
     it('should change user lastname', async()=>{
         const lastname = await generator.randomLastName();
-        await userPage.clickMyAccountBtn();
         await userPage.setLastname(lastname);
         await userPage.clickSaveBtn();
         await browser.refresh();
