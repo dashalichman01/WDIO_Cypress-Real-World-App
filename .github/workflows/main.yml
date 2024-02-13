@@ -49,7 +49,7 @@ jobs:
       
       - name: Generate Allure Report
         if: always()
-        run: npm run allure:report
+        run: cd tests && npm run allure:report
 
       - name: Build test report
         uses: simple-elf/allure-report-action@master
