@@ -32,6 +32,10 @@ class BankAccountsPage{
         return await page.getElement(bankAccountNumberErrorMsg);
     }
 
+    async getAmountOfBankAccounts(){
+        return await page.getAmount(deleteBtn);
+    }
+
     async clickBankAccountsBtn(){
         await page.clickElement(bankAccountsBtn);
     }
@@ -46,10 +50,6 @@ class BankAccountsPage{
 
     async deleteLastAccount(){
         await page.clickElementByIndex(deleteBtn,  0);
-    }
-
-    async getDeleteBtns(){
-        return await page.getAllElements(deleteBtn);
     }
 
     async isRoutingNumberErrorMsgDisplayed(){

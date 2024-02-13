@@ -8,11 +8,11 @@ class Page {
     }
 
     async getAllElements(element: string){
-        return await $$(element)
+        return await $$(element);
     }
 
     async getElementLocation(element: string){
-        return await (await this.getElement(element)).getLocation()
+        return await (await this.getElement(element)).getLocation();
     }
 
     async clickElement(element: string, flag = true) {
