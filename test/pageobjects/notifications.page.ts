@@ -15,7 +15,7 @@ class NotificationsPage{
     }
 
     async clickDismissBtn(){
-        await page.clickElement(dismissBtn, false);
+        await page.clickElementByIndex(dismissBtn, 0);
     }
 }
 export default new NotificationsPage();
