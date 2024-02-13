@@ -24,7 +24,7 @@ class Page {
     }
 
     async getElementByIndex(element: string, index: number) {
-        return (await $$(element))[index];
+        return (await this.getAllElements(element))[index];
     }
 
     async clickElementByIndex(element: string, index: number){
@@ -36,7 +36,7 @@ class Page {
     }
 
     async getAmount(element: string){
-        return (await $$(element)).length;
+        return (await this.getAllElements(element)).length;
     }
 
     async isElementClickableByIndex(element: string, index: number) {
