@@ -7,7 +7,7 @@ describe('Notifications test', ()=>{
         await loginPage.open();
         await loginPage.login(''+process.env.USER, ''+process.env.PASSWORD);
         await notificationsPage.clickNotificationBtn();
-        // await browser.pause(2000)
+        await browser.pause(2000)
         const notificationsBeforeDismissing = await notificationsPage.getAmountOfNotifications();
         await notificationsPage.clickDismissBtn();
         await browser.refresh();
