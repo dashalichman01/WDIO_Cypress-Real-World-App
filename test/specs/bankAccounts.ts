@@ -42,7 +42,7 @@ describe('Bank accounts tests', ()=>{
     it('should delete bank account', async()=>{
         const accountsBeforeDeleting = await bankAccountsPage.getAmountOfBankAccounts();
         await bankAccountsPage.deleteLastAccount();
-        await browser.refresh();
+        await browser.pause(2000);
         const accountsAfterDeleting = await bankAccountsPage.getAmountOfBankAccounts();
         await expect(accountsAfterDeleting).toEqual(accountsBeforeDeleting - 1);
     })

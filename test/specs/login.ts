@@ -27,6 +27,7 @@ describe('Login tests', () => {
     it('should logout', async()=>{
         await loginPage.login(''+process.env.USER, ''+process.env.PASSWORD);
         await loginPage.logout();
+        await browser.pause(2000);
         await expect(await browser.getUrl()).toContain('signin');
     })
 })
