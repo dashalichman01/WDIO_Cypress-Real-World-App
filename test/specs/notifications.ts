@@ -2,10 +2,12 @@ import notificationsPage from '../pageobjects/notifications.page';
 import loginPage from '../pageobjects/login.page';
 
 describe('Notifications test', ()=>{
-    it('should dismiss notification', async()=>{
+    before(async()=>{
         await loginPage.open();
         await loginPage.login(''+process.env.USER, ''+process.env.PASSWORD);
         await notificationsPage.clickNotificationBtn();
+    })
+    it('should dismiss notification', async()=>{
         const notificationsBeforeDismissing = await notificationsPage.getAmountOfNotifications();
         await notificationsPage.clickDismissBtn();
         await browser.refresh();
