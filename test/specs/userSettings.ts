@@ -15,6 +15,7 @@ describe('User settings tests', ()=>{
         await userPage.setFirstname(firstname);
         await userPage.setLastname(lastname);
         await userPage.clickSaveBtn();
+        await browser.refresh();
         await expect(await userPage.getUsername()).toEqual(firstname + " "+ lastname[0])
     })
 
@@ -23,6 +24,7 @@ describe('User settings tests', ()=>{
         await userPage.clickMyAccountBtn();
         await userPage.setFirstname(firstname);
         await userPage.clickSaveBtn();
+        await browser.refresh();
         await expect((await userPage.getUsername()).split(" ")[0]).toEqual(firstname);
     })
 
@@ -31,6 +33,7 @@ describe('User settings tests', ()=>{
         await userPage.clickMyAccountBtn();
         await userPage.setLastname(lastname);
         await userPage.clickSaveBtn();
+        await browser.refresh();
         await expect((await userPage.getUsername()).split(" ")[1]).toEqual(lastname[0]);
     })
 })
