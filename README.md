@@ -23,6 +23,8 @@ Make sure you have the following installed on your machine:
     ```bash
    npm install
 
+3. [Run the application](https://learn.cypress.io/real-world-examples/cypress-real-world-app-overview)
+
 ### Running Tests
 
 To run Cypress tests, use the following command:
